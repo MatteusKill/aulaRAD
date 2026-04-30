@@ -1,24 +1,23 @@
-import tkinter as tk
-from conexao import conectar
+import sqlite3 as conector
+## abre uma conexão com o banco de dados
 
-def abrir_cadastro():
-    tela = tk.Toplevel()
-    tela.title("Cadastro")
-    
-    nome = tk.Entry(tela)
-    nome.pack()
-    
-    email = tk.Entry(tela)
-    email.pack()
-    
-    def salvar():
-        conn = conectar()
-        cursor = conn.cursor()
-        
-        cursor.execute(
-            "INSERT INTO usuarios (nome, email) VALUES (%s , %s)", (nome.get(), email.get())
-        )
-        conn.commit()
-        conn.close()
-        
-    tk.Button(tela, text="Salvar", command=salvar).pack()
+conexao = conector.connect("estacioTeste.db")
+cursor = conexao.cursor()
+
+
+# nomeAluno = input("Digite o nome do aluno: ")
+# cursoAluno = input("Digite o curso matriculado: ")
+
+# cursor.execute("INSERT INTO alunos (nome, curso) VALUES (?,?)", (nomeAluno, cursoAluno))
+
+# cursor.execute("DELETE FROM alunos WHERE id_aluno=3 ")c
+
+# cursor.execute(""" SELECT * FROM alunos """)
+# dados = cursor.fetchall()
+
+# for aluno in dados:
+#     print(aluno)
+
+
+
+conexao.commit()
